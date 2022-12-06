@@ -23,8 +23,27 @@ public class AdministradorServiceImpl implements AdministradorService{
 
 
     public AdministradorDTO criaAdministrador(AdministradorDTO administradorDTO) throws AdministradorAlreadyCreatedException {
+        if(isAdministradorCadastrado(administradorDTO.getLogin())) {
+            throw new AdministradorAlreadyCreatedException();
+        }
+
         Administrador administrador = new Administrador(administradorDTO.getNome(), administradorDTO.getLogin(), administradorDTO.getSenha());
         salvarAdministradorCadastrado(administrador);
+        return modelMapper.map(administrador, AdministradorDTO.class);
+    }
+
+    private boolean isAdministradorCadastrado(String login) {
+        try {
+            getAdministradorByLogin(login);
+            return true;
+        } catch (AdministradorNotFoundException e) {
+            return false;
+        }
+    }
+
+    public AdministradorDTO getAdministradorByLogin(String login) throws AdministradorNotFoundException {
+        Administrador administrador = administradorRepository.findByLogin(login)
+                .orElseThrow(() -> new AdministradorNotFoundException());
         return modelMapper.map(administrador, AdministradorDTO.class);
     }
 

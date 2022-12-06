@@ -10,7 +10,7 @@ public class ErroAdministrador {
 
     static final String ADMINISTRADORES_NAO_CASTRADOS = "Não há administradores cadastrados";
 
-    static final String ADMINISTRADOR_JA_CADASTRADO = "O administrador nome %s já esta cadastrado";
+    static final String ADMINISTRADOR_JA_CADASTRADO = "O administrador com login %s já esta cadastrado";
 
     public static ResponseEntity<CustomErrorType> erroAdministradorNaoEncontrado(long id) {
         return new ResponseEntity<CustomErrorType>(new CustomErrorType(String.format(ErroAdministrador.ADMINISTRADOR_NAO_CASTRADO, id)),
@@ -23,7 +23,7 @@ public class ErroAdministrador {
     }
 
     public static ResponseEntity<?> erroAdministradorJaCadastrado(AdministradorDTO administradorDTO) {
-        return new ResponseEntity<CustomErrorType>(new CustomErrorType(String.format(ErroAdministrador.ADMINISTRADOR_JA_CADASTRADO)), HttpStatus.CONFLICT);
+        return new ResponseEntity<CustomErrorType>(new CustomErrorType(String.format(ErroAdministrador.ADMINISTRADOR_JA_CADASTRADO, administradorDTO.getLogin())), HttpStatus.CONFLICT);
     }
 
 }
