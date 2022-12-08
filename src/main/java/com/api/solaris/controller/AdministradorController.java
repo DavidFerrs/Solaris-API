@@ -1,8 +1,8 @@
 package com.api.solaris.controller;
 
 import com.api.solaris.dto.AdministradorDTO;
-import com.api.solaris.exception.AdministradorAlreadyCreatedException;
-import com.api.solaris.exception.AdministradorNotFoundException;
+import com.api.solaris.exception.EntityAlreadyExistsException;
+import com.api.solaris.exception.EntityNotFoundException;
 import com.api.solaris.service.AdministradorService;
 import com.api.solaris.util.ErroAdministrador;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +25,7 @@ public class AdministradorController {
         try {
             AdministradorDTO administrador = administradorService.criaAdministrador(administradorDTO);
             return new ResponseEntity<AdministradorDTO>(administrador, HttpStatus.CREATED);
-        } catch (AdministradorAlreadyCreatedException e) {
+        } catch (EntityAlreadyExistsException e) {
             return ErroAdministrador.erroAdministradorJaCadastrado(administradorDTO);
         }
     }
@@ -45,7 +45,7 @@ public class AdministradorController {
         try {
             administradorService.removerAdministradorCadastrado(id);
             return new ResponseEntity<>(HttpStatus.OK);
-        } catch (AdministradorNotFoundException e) {
+        } catch (EntityNotFoundException e) {
             return ErroAdministrador.erroAdministradorNaoEncontrado(id);
         }
     }
@@ -56,7 +56,7 @@ public class AdministradorController {
         try {
             AdministradorDTO administrador = administradorService.getAdministradorById(id);
             return new ResponseEntity<AdministradorDTO>(administrador, HttpStatus.OK);
-        } catch (AdministradorNotFoundException e) {
+        } catch (EntityNotFoundException e) {
             return ErroAdministrador.erroAdministradorNaoEncontrado(id);
         }
     }
@@ -67,7 +67,7 @@ public class AdministradorController {
         try {
             AdministradorDTO administrador = administradorService.atualizaAdministrador(id, administradorDTO);
             return new ResponseEntity<AdministradorDTO>(administrador, HttpStatus.OK);
-        } catch (AdministradorNotFoundException e) {
+        } catch (EntityNotFoundException e) {
             return ErroAdministrador.erroAdministradorNaoEncontrado(id);
         }
     }
