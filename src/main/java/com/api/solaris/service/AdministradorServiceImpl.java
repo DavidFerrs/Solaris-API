@@ -1,8 +1,8 @@
 package com.api.solaris.service;
 
 import com.api.solaris.dto.AdministradorDTO;
-import com.api.solaris.exception.AdministradorAlreadyCreatedException;
-import com.api.solaris.exception.AdministradorNotFoundException;
+import com.api.solaris.exception.EntityAlreadyExistsException;
+import com.api.solaris.exception.EntityNotFoundException;
 import com.api.solaris.model.Administrador;
 import com.api.solaris.repository.AdministradorRepository;
 import org.modelmapper.ModelMapper;
@@ -22,9 +22,9 @@ public class AdministradorServiceImpl implements AdministradorService{
     public ModelMapper modelMapper;
 
 
-    public AdministradorDTO criaAdministrador(AdministradorDTO administradorDTO) throws AdministradorAlreadyCreatedException {
+    public AdministradorDTO criaAdministrador(AdministradorDTO administradorDTO) throws EntityAlreadyExistsException {
         if(isAdministradorCadastrado(administradorDTO.getLogin())) {
-            throw new AdministradorAlreadyCreatedException();
+            throw new EntityAlreadyExistsException();
         }
 
         Administrador administrador = new Administrador(administradorDTO.getNome(), administradorDTO.getLogin(), administradorDTO.getSenha());
@@ -36,14 +36,14 @@ public class AdministradorServiceImpl implements AdministradorService{
         try {
             getAdministradorByLogin(login);
             return true;
-        } catch (AdministradorNotFoundException e) {
+        } catch (EntityNotFoundException e) {
             return false;
         }
     }
 
-    public AdministradorDTO getAdministradorByLogin(String login) throws AdministradorNotFoundException {
+    public AdministradorDTO getAdministradorByLogin(String login) throws EntityNotFoundException {
         Administrador administrador = administradorRepository.findByLogin(login)
-                .orElseThrow(() -> new AdministradorNotFoundException());
+                .orElseThrow(() -> new EntityNotFoundException());
         return modelMapper.map(administrador, AdministradorDTO.class);
     }
 
@@ -60,24 +60,24 @@ public class AdministradorServiceImpl implements AdministradorService{
     }
 
     @Override
-    public void removerAdministradorCadastrado(Long id) throws AdministradorNotFoundException {
+    public void removerAdministradorCadastrado(Long id) throws EntityNotFoundException {
         Administrador administrador = getAdministradorId(id);
         administradorRepository.delete(administrador);
     }
 
-    private Administrador getAdministradorId(Long id) throws AdministradorNotFoundException {
+    private Administrador getAdministradorId(Long id) throws EntityNotFoundException {
         return administradorRepository.findById(id)
-                .orElseThrow(() -> new AdministradorNotFoundException());
+                .orElseThrow(() -> new EntityNotFoundException());
     }
 
     @Override
-    public AdministradorDTO getAdministradorById(Long id) throws AdministradorNotFoundException {
+    public AdministradorDTO getAdministradorById(Long id) throws EntityNotFoundException {
         Administrador administrador = getAdministradorId(id);
         return modelMapper.map(administrador, AdministradorDTO.class);
     }
 
     @Override
-    public AdministradorDTO atualizaAdministrador(Long id, AdministradorDTO administradorDTO) throws AdministradorNotFoundException {
+    public AdministradorDTO atualizaAdministrador(Long id, AdministradorDTO administradorDTO) throws EntityNotFoundException {
         Administrador administrador = getAdministradorId(id);
         administrador.setNome(administradorDTO.getNome());
         administrador.setLogin(administrador.getLogin());

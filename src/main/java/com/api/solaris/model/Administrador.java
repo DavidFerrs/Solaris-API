@@ -31,4 +31,6 @@ public class Administrador {
         this.login = login;
         this.senha = senha;
     }
+
+
 }

@@ -1,6 +1,6 @@
 package com.api.solaris.exception;
 
-public class AdministradorAlreadyCreatedException extends Exception {
+public class EntityAlreadyExistsException extends Exception {
 
     /**
      *

@@ -1,6 +1,6 @@
 package com.api.solaris.exception;
 
-public class AdministradorNotFoundException extends Exception {
+public class EntityNotFoundException extends Exception {
 
     /**
      *
