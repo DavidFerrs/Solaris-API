@@ -1,0 +1,19 @@
+version: 'v2.10.2'
+
+services:
+  app:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: sollaris-ernegy
+    ports:
+      - 8080:8080
+    depends_on:
+      - db
+  db:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    container_name: sollaris-ernegy
+    environment:
+        ACCEPT_EULA: Y
+        MSSQL_SA_PASSWORD: Sollaris@22
+    ports:
+      - '1432:1433'
+
