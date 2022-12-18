@@ -12,10 +12,6 @@ public class ClienteDTO {
 
     private Integer idade;
 
-    private String password;
-
-//    private List<RoleDTO> roles;
-
     public UUID getId() {
         return id;
     }
@@ -32,11 +28,4 @@ public class ClienteDTO {
         return idade;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-//    public List<RoleDTO> getRoles() {
-//        return roles;
-//    }
 }
