@@ -19,13 +19,11 @@
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-<<<<<<< HEAD
-=======
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
->>>>>>> 69ca724 (Cliente Crud)
+
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
 		<dependency>
@@ -64,7 +62,6 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-<<<<<<< HEAD
 		<dependency>
 			<groupId>io.springfox</groupId>
 			<artifactId>springfox-swagger2</artifactId>
@@ -81,11 +78,7 @@
 			<version>2.6.1</version>
 		</dependency>
 	</dependencies>
-=======
 
-	</dependencies>
-
->>>>>>> 69ca724 (Cliente Crud)
 	<build>
 		<plugins>
 			<plugin>
