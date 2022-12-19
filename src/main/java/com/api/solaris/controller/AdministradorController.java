@@ -1,13 +1,16 @@
 package com.api.solaris.controller;
 
 import com.api.solaris.dto.AdministradorDTO;
+import com.api.solaris.dto.Usuario;
 import com.api.solaris.exception.EntityAlreadyExistsException;
 import com.api.solaris.exception.EntityNotFoundException;
+import com.api.solaris.repository.UsuarioRepository;
 import com.api.solaris.service.AdministradorService;
 import com.api.solaris.util.ErroAdministrador;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -70,6 +73,22 @@ public class AdministradorController {
         } catch (EntityNotFoundException e) {
             return ErroAdministrador.erroAdministradorNaoEncontrado(id);
         }
+    }
+
+    @Autowired
+    public UsuarioRepository usuarioRepository;
+
+    @Autowired
+    private PasswordEncoder encoder;
+
+    @PostMapping(value = "/criaUsuario")
+    public String testeLogin(@RequestBody Usuario usuario){
+
+        usuario.setPassword(encoder.encode(usuario.getPassword()));
+
+        usuarioRepository.save(usuario);
+
+        return "Criado";
     }
 
 }
