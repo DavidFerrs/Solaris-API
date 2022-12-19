@@ -74,7 +74,7 @@ public class AdministradorController {
             return ErroAdministrador.erroAdministradorNaoEncontrado(id);
         }
     }
-
+    //trechos testes
     @Autowired
     public UsuarioRepository usuarioRepository;
 
