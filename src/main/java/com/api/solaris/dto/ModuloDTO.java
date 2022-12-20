@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 
-public class ModuloDTO {
+public class OrcamentoDTO {
     private long id;
 
     private String modelo;
