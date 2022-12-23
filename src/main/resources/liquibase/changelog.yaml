@@ -1,0 +1,12 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Andreza Santana
+      changes:
+        sqlFile:
+          path: scripts/teste.sql
+          relativeToChangelogFile: true
+      rollback:
+        sqlFile:
+          path:  scripts/teste.sql
+          relativeToChangelogFile: true
