@@ -10,15 +10,3 @@ databaseChangeLog:
         sqlFile:
           path:  scripts/teste.sql
           relativeToChangelogFile: true
-
-  - changeSet:
-      id: 2
-      author: Andreza Santana
-      changes:
-        sqlFile:
-          path: scripts/teste2.sql
-          relativeToChangelogFile: true
-      rollback:
-        sqlFile:
-          path: scripts/teste2.sql
-          relativeToChangelogFile: true
