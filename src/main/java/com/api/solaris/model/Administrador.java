@@ -1,6 +1,5 @@
 package com.api.solaris.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,23 +13,16 @@ import javax.persistence.Id;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Administrador {
+public class Administrador extends Usuario {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    private String nome;
-
-    private String login;
-
-    private String senha;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    protected long id;
 
     public Administrador(String nome, String login, String senha) {
         this.nome = nome;
         this.login = login;
         this.senha = senha;
+        this.tipo = 2;
     }
-
-
 }

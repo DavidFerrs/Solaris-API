@@ -3,6 +3,7 @@ package com.api.solaris.service;
 import com.api.solaris.dto.AdministradorDTO;
 import com.api.solaris.exception.EntityAlreadyExistsException;
 import com.api.solaris.exception.EntityNotFoundException;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
 import java.util.List;
 

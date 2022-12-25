@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="d150835f-33d3-4dc2-ada1-55707012c572" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/api/solaris/controller/ClienteApiController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/api/solaris/dto/ClienteDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/api/solaris/exception/cliente/ClienteAlreadyCreatedException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/api/solaris/exception/cliente/ClienteNotFoundException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/api/solaris/model/Cliente.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/api/solaris/repository/ClienteRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/api/solaris/service/ClienteService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/api/solaris/service/ClienteServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/api/solaris/util/ErroCliente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/solaris.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/api/solaris/config/JWTAuthFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/api/solaris/config/JWTAuthFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/api/solaris/config/JWTConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/api/solaris/config/JWTConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/api/solaris/config/SwaggerConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/api/solaris/controller/AdministradorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/api/solaris/controller/AdministradorController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/api/solaris/data/DetalheUsuarioData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/api/solaris/data/DetalheUsuarioData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/api/solaris/dto/AdministradorDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/api/solaris/dto/AdministradorDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/api/solaris/dto/ModuloDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/api/solaris/dto/ModuloDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/api/solaris/dto/Usuario.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/api/solaris/model/Administrador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/api/solaris/model/Administrador.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/api/solaris/model/Modulo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/api/solaris/model/Modulo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/api/solaris/repository/AdministradorRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/api/solaris/repository/AdministradorRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/api/solaris/repository/UsuarioRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/api/solaris/service/AdministradorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/api/solaris/service/AdministradorService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/api/solaris/service/AdministradorServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/api/solaris/service/AdministradorServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/api/solaris/service/DetalheUsuarioServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/api/solaris/SolarisApplication.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/api/solaris/config/JWTAuthFilter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/api/solaris/config/JWTConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/api/solaris/config/JWTValidaFilter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/api/solaris/config/SwaggerConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/api/solaris/controller/AdministradorController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/api/solaris/controller/ModuloController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/api/solaris/data/DetalheUsuarioData.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/api/solaris/dto/AdministradorDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/api/solaris/dto/ModuloDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/api/solaris/dto/Usuario.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/api/solaris/exception/EntityAlreadyExistsException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/api/solaris/exception/EntityNotFoundException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/api/solaris/model/Administrador.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/api/solaris/model/Modulo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/api/solaris/repository/AdministradorRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/api/solaris/repository/ModuloRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/api/solaris/repository/UsuarioRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/api/solaris/service/AdministradorService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/api/solaris/service/AdministradorServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/api/solaris/service/DetalheUsuarioServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/api/solaris/service/ModuloService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/api/solaris/service/ModuloServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/api/solaris/util/CustomErrorType.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/api/solaris/util/ErroAdministrador.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/solaris-0.0.1-SNAPSHOT.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/solaris-0.0.1-SNAPSHOT.jar.original" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.api.solaris.SolarisApplicationTests.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.api.solaris.SolarisApplicationTests.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/api/solaris/SolarisApplicationTests.class" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="workspaceImportEnabled" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="2JPAdQMt4lpmdX0iKzYdnejInN1" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/welbe/Documents/Intellij-workspace/Solaris-API",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="SolarisApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="solaris" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.api.solaris.SolarisApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d150835f-33d3-4dc2-ada1-55707012c572" name="Changes" comment="" />
+      <created>1671969434250</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1671969434250</updated>
+      <workItem from="1671969437722" duration="1334000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

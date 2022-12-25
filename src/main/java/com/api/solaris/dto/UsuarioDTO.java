@@ -7,11 +7,11 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ModuloDTO {
-    private long id;
+public class UsuarioDTO {
 
-    private String modelo;
-    private String fabricante;
-    private Double potencia;
+    private String login;
 
+    private String senha;
+
+    private int tipo;
 }

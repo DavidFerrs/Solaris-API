@@ -28,6 +28,4 @@ public class Modulo {
         this.potencia = potencia;
         this.modelo = modelo;
     }
-
-
 }

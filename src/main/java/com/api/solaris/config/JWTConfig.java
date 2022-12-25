@@ -1,6 +1,6 @@
 package com.api.solaris.config;
 
-import com.api.solaris.service.DetalheUsuarioServiceImpl;
+import com.api.solaris.service.UsuarioServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -16,11 +16,11 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 @EnableWebSecurity
 public class JWTConfig extends WebSecurityConfigurerAdapter {
 
-    private final DetalheUsuarioServiceImpl usuarioService;
+    private final UsuarioServiceImpl usuarioService;
 
     private final PasswordEncoder passwordEncoder;
 
-    public JWTConfig(DetalheUsuarioServiceImpl usuarioService, PasswordEncoder passwordEncoder) {
+    public JWTConfig(UsuarioServiceImpl usuarioService, PasswordEncoder passwordEncoder) {
         this.usuarioService = usuarioService;
         this.passwordEncoder = passwordEncoder;
     }
@@ -33,9 +33,10 @@ public class JWTConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().authorizeRequests()
-                .antMatchers(HttpMethod.POST,  "/api/criaUsuario/").permitAll()
+                .antMatchers(HttpMethod.POST,  "/api/cliente/**").permitAll()
                 .antMatchers(HttpMethod.POST,  "/login").permitAll()
                 .antMatchers("/h2/**").permitAll()
+                .antMatchers("/swagger-ui/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .addFilter(new JWTAuthFilter(authenticationManager()))

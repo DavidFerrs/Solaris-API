@@ -1,10 +1,12 @@
 package com.api.solaris.config;
 
 import com.api.solaris.data.DetalheUsuarioData;
-import com.api.solaris.dto.Usuario;
+import com.api.solaris.dto.UsuarioDTO;
+
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.common.collect.Lists;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -14,7 +16,6 @@ import javax.servlet.FilterChain;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Date;
 
 public class JWTAuthFilter extends UsernamePasswordAuthenticationFilter {
@@ -33,19 +34,18 @@ public class JWTAuthFilter extends UsernamePasswordAuthenticationFilter {
     public Authentication attemptAuthentication(HttpServletRequest request,
                                                 HttpServletResponse response) throws RuntimeException {
         try {
-            Usuario usuario = new ObjectMapper()
-                    .readValue(request.getInputStream(), Usuario.class);
+            UsuarioDTO usuario = new ObjectMapper()
+                    .readValue(request.getInputStream(), UsuarioDTO.class);
 
             return authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
                     usuario.getLogin(),
-                    usuario.getPassword(),
-                    new ArrayList<>()
+                    usuario.getSenha(),
+                    Lists.newArrayList()
             ));
 
         } catch (IOException e) {
             throw new RuntimeException("Falha ao autenticar usuario", e);
         }
-
     }
 
     @Override

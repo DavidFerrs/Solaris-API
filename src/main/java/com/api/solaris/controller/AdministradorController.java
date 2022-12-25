@@ -1,10 +1,8 @@
 package com.api.solaris.controller;
 
 import com.api.solaris.dto.AdministradorDTO;
-import com.api.solaris.dto.Usuario;
 import com.api.solaris.exception.EntityAlreadyExistsException;
 import com.api.solaris.exception.EntityNotFoundException;
-import com.api.solaris.repository.UsuarioRepository;
 import com.api.solaris.service.AdministradorService;
 import com.api.solaris.util.ErroAdministrador;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +25,7 @@ public class AdministradorController {
     public ResponseEntity<?> criarAdministrador(@RequestBody AdministradorDTO administradorDTO) {
         try {
             AdministradorDTO administrador = administradorService.criaAdministrador(administradorDTO);
-            return new ResponseEntity<AdministradorDTO>(administrador, HttpStatus.CREATED);
+            return new ResponseEntity<>(administrador, HttpStatus.CREATED);
         } catch (EntityAlreadyExistsException e) {
             return ErroAdministrador.erroAdministradorJaCadastrado(administradorDTO);
         }
@@ -39,7 +37,7 @@ public class AdministradorController {
         if (administradores.isEmpty()) {
             return ErroAdministrador.erroSemAdministradoresCadastrados();
         }
-        return new ResponseEntity<List<AdministradorDTO>>(administradores, HttpStatus.OK);
+        return new ResponseEntity<>(administradores, HttpStatus.OK);
     }
 
     @DeleteMapping(value = "/administrador/{id}")
@@ -58,7 +56,7 @@ public class AdministradorController {
 
         try {
             AdministradorDTO administrador = administradorService.getAdministradorById(id);
-            return new ResponseEntity<AdministradorDTO>(administrador, HttpStatus.OK);
+            return new ResponseEntity<>(administrador, HttpStatus.OK);
         } catch (EntityNotFoundException e) {
             return ErroAdministrador.erroAdministradorNaoEncontrado(id);
         }
@@ -69,26 +67,9 @@ public class AdministradorController {
 
         try {
             AdministradorDTO administrador = administradorService.atualizaAdministrador(id, administradorDTO);
-            return new ResponseEntity<AdministradorDTO>(administrador, HttpStatus.OK);
+            return new ResponseEntity<>(administrador, HttpStatus.OK);
         } catch (EntityNotFoundException e) {
             return ErroAdministrador.erroAdministradorNaoEncontrado(id);
         }
     }
-    //trechos testes
-    @Autowired
-    public UsuarioRepository usuarioRepository;
-
-    @Autowired
-    private PasswordEncoder encoder;
-
-    @PostMapping(value = "/criaUsuario")
-    public String testeLogin(@RequestBody Usuario usuario){
-
-        usuario.setPassword(encoder.encode(usuario.getPassword()));
-
-        usuarioRepository.save(usuario);
-
-        return "Criado";
-    }
-
 }

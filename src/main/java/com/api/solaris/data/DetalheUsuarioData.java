@@ -1,6 +1,6 @@
 package com.api.solaris.data;
 
-import com.api.solaris.dto.Usuario;
+import com.api.solaris.model.Usuario;
 import com.google.common.collect.Lists;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -8,11 +8,12 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.Optional;
 
-public class DetalheUsuarioData implements UserDetails {
 
-    private final Optional<Usuario> usuario;
+public class DetalheUsuarioData<T extends Usuario> implements UserDetails {
 
-    public DetalheUsuarioData(Optional<Usuario> usuario) {
+    private final Optional<T> usuario;
+
+    public DetalheUsuarioData(Optional<T> usuario) {
         this.usuario = usuario;
     }
 
@@ -23,12 +24,12 @@ public class DetalheUsuarioData implements UserDetails {
 
     @Override
     public String getPassword() {
-        return usuario.orElse(new Usuario()).getPassword();
+        return usuario.isPresent() ? usuario.get().getSenha() : "";
     }
 
     @Override
     public String getUsername() {
-        return  usuario.orElse(new Usuario()).getLogin();
+        return usuario.isPresent() ? usuario.get().getLogin() : "";
     }
 
     @Override

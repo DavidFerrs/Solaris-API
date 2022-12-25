@@ -1,5 +1,6 @@
 package com.api.solaris.service;
 
+import com.api.solaris.data.DetalheUsuarioData;
 import com.api.solaris.dto.AdministradorDTO;
 import com.api.solaris.exception.EntityAlreadyExistsException;
 import com.api.solaris.exception.EntityNotFoundException;
@@ -7,13 +8,17 @@ import com.api.solaris.model.Administrador;
 import com.api.solaris.repository.AdministradorRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-public class AdministradorServiceImpl implements AdministradorService{
+public class AdministradorServiceImpl implements AdministradorService {
 
     @Autowired
     private AdministradorRepository administradorRepository;
@@ -21,13 +26,15 @@ public class AdministradorServiceImpl implements AdministradorService{
     @Autowired
     public ModelMapper modelMapper;
 
+    @Autowired
+    private PasswordEncoder encoder;
 
     public AdministradorDTO criaAdministrador(AdministradorDTO administradorDTO) throws EntityAlreadyExistsException {
-        if(isAdministradorCadastrado(administradorDTO.getLogin())) {
+        if (isAdministradorCadastrado(administradorDTO.getLogin())) {
             throw new EntityAlreadyExistsException();
         }
 
-        Administrador administrador = new Administrador(administradorDTO.getNome(), administradorDTO.getLogin(), administradorDTO.getSenha());
+        Administrador administrador = new Administrador(administradorDTO.getNome(), administradorDTO.getLogin(), encoder.encode(administradorDTO.getSenha()));
         salvarAdministradorCadastrado(administrador);
         return modelMapper.map(administrador, AdministradorDTO.class);
     }
