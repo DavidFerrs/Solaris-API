@@ -4,13 +4,16 @@ import com.api.solaris.dto.ClienteDTO;
 import com.api.solaris.exception.cliente.ClienteAlreadyCreatedException;
 import com.api.solaris.exception.cliente.ClienteNotFoundException;
 import com.api.solaris.model.Cliente;
+import com.api.solaris.model.Role;
 import com.api.solaris.repository.ClienteRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -24,6 +27,9 @@ public class ClienteServiceImpl implements ClienteService {
 
     @Autowired
     private PasswordEncoder encoder;
+
+    @Autowired
+    private RoleServiceImpl roleService;
 
     public ClienteDTO getClienteById(Long id) throws ClienteNotFoundException {
         Cliente cliente = getClienteId(id);
@@ -64,8 +70,16 @@ public class ClienteServiceImpl implements ClienteService {
             throw new ClienteAlreadyCreatedException();
         }
 
-        Cliente cliente = new Cliente(clienteDTO.getCpf(), clienteDTO.getNome(), clienteDTO.getLogin(),
-                clienteDTO.getIdade(), encoder.encode(clienteDTO.getSenha()));
+        Set<Role> roles = new HashSet<>();
+
+        roles.add(roleService.findByName("USER"));
+
+        Cliente cliente = new Cliente(clienteDTO.getCpf(),
+                clienteDTO.getNome(),
+                clienteDTO.getLogin(),
+                clienteDTO.getIdade(),
+                encoder.encode(clienteDTO.getSenha()),
+                roles);
 
         salvarClienteCadastrado(cliente);
 

@@ -6,7 +6,6 @@ import com.api.solaris.dto.UsuarioDTO;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.common.collect.Lists;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -16,6 +15,7 @@ import javax.servlet.FilterChain;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class JWTAuthFilter extends UsernamePasswordAuthenticationFilter {
@@ -31,17 +31,11 @@ public class JWTAuthFilter extends UsernamePasswordAuthenticationFilter {
 
 
     @Override
-    public Authentication attemptAuthentication(HttpServletRequest request,
-                                                HttpServletResponse response) throws RuntimeException {
+    public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws RuntimeException {
         try {
-            UsuarioDTO usuario = new ObjectMapper()
-                    .readValue(request.getInputStream(), UsuarioDTO.class);
+            UsuarioDTO usuario = new ObjectMapper().readValue(request.getInputStream(), UsuarioDTO.class);
 
-            return authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
-                    usuario.getLogin(),
-                    usuario.getSenha(),
-                    Lists.newArrayList()
-            ));
+            return authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(usuario.getLogin(), usuario.getSenha(), new ArrayList<>()));
 
         } catch (IOException e) {
             throw new RuntimeException("Falha ao autenticar usuario", e);
@@ -49,17 +43,15 @@ public class JWTAuthFilter extends UsernamePasswordAuthenticationFilter {
     }
 
     @Override
-    protected void successfulAuthentication(HttpServletRequest request,
-                                            HttpServletResponse response,
-                                            FilterChain chain,
-                                            Authentication authResult) throws IOException {
+    protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) throws IOException {
 
         DetalheUsuarioData usuarioData = (DetalheUsuarioData) authResult.getPrincipal();
 
-        String token = JWT.create().
-                withSubject(usuarioData.getUsername())
-                .withExpiresAt(new Date(System.currentTimeMillis() + TOKEN_EXPIRACAO))
-                .sign(Algorithm.HMAC512(TOKEN_SENHA));
+        String token = JWT.create()
+                .withSubject(usuarioData.getUsername())
+                .withClaim("roles", usuarioData.getRoleUsuario())
+                .withExpiresAt(new Date(System.currentTimeMillis() + TOKEN_EXPIRACAO)).
+                sign(Algorithm.HMAC512(TOKEN_SENHA));
 
         response.getWriter().write(token);
         response.getWriter().flush();
