@@ -11,7 +11,7 @@ import java.util.UUID;
 @Data
 public class ClienteDTO {
 
-    private UUID id;
+    private Long id;
 
     private String nome;
 

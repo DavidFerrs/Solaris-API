@@ -5,8 +5,6 @@ import com.api.solaris.dto.ClienteDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import java.util.UUID;
-
 public class ErroCliente {
 	
 	static final String CLIENTE_NAO_CASTRADO = "Cliente com id %s não está cadastrado";
@@ -18,7 +16,7 @@ public class ErroCliente {
 
 	static final String CLIENTE_JA_CADASTRADO = "O cliente nome %s já esta cadastrado com o CPF %s";
 
-	public static ResponseEntity<CustomErrorType> erroClienteNaoEnconrtrado(UUID id) {
+	public static ResponseEntity<CustomErrorType> erroClienteNaoEnconrtrado(Long id) {
 		return new ResponseEntity<CustomErrorType>(new CustomErrorType(String.format(ErroCliente.CLIENTE_NAO_CASTRADO, id)),
 				HttpStatus.NOT_FOUND);
 	}
@@ -30,6 +28,6 @@ public class ErroCliente {
 
 	public static ResponseEntity<?> erroClienteJaCadastrado(ClienteDTO clienteDTO) {
 		return new ResponseEntity<CustomErrorType>(new CustomErrorType(String.format(ErroCliente.CLIENTE_JA_CADASTRADO,
-				clienteDTO.getNome(), clienteDTO.getCpf())), HttpStatus.CONFLICT);
+				clienteDTO.getNome(), clienteDTO.getCpfCnpj())), HttpStatus.CONFLICT);
 	}
 }

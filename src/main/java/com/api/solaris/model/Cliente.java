@@ -9,8 +9,8 @@ import java.util.UUID;
 public class Cliente {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @NotNull
     @Column(unique=true)
@@ -57,7 +57,7 @@ public class Cliente {
         this.celular = celular;
     }
 
-    public UUID getId() {
+    public Long getId() {
         return id;
     }
 

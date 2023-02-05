@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -23,13 +22,13 @@ public class ClienteServiceImpl implements ClienteService {
 	@Autowired
 	public ModelMapper modelMapper;
 
-	public ClienteDTO getClienteById(UUID id) throws ClienteNotFoundException {
+	public ClienteDTO getClienteById(Long id) throws ClienteNotFoundException {
 		Cliente cliente = getClienteId(id);
 		return modelMapper.map(cliente, ClienteDTO.class);
 	}
 
-	private Cliente getClienteId(UUID id) throws ClienteNotFoundException {
-		return clienteRepository.findById(id)
+	private Cliente getClienteId(Long id) throws ClienteNotFoundException {
+		return (Cliente) clienteRepository.findById(id)
 				.orElseThrow(() -> new ClienteNotFoundException());
 	}
 
@@ -39,7 +38,7 @@ public class ClienteServiceImpl implements ClienteService {
 		return modelMapper.map(cliente, ClienteDTO.class);
 	}
 
-	public void removerClienteCadastrado(UUID id) throws ClienteNotFoundException {
+	public void removerClienteCadastrado(Long id) throws ClienteNotFoundException {
 		Cliente cliente = getClienteId(id);
 		clienteRepository.delete(cliente);
 	}
@@ -85,7 +84,7 @@ public class ClienteServiceImpl implements ClienteService {
 		return modelMapper.map(cliente, ClienteDTO.class);
 	}
 
-	public ClienteDTO atualizaCliente(UUID id, ClienteDTO clienteDTO) throws ClienteNotFoundException {
+	public ClienteDTO atualizaCliente(Long id, ClienteDTO clienteDTO) throws ClienteNotFoundException {
 
 		Cliente cliente = getClienteId(id);
 

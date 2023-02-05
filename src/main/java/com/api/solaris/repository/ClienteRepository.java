@@ -13,4 +13,6 @@ public interface ClienteRepository extends JpaRepository<Cliente, UUID>{
 	Optional<Cliente> findByCpfCnpj(long cpfCnpj);
 
 	Optional<Cliente> findByNome(String nome);
+
+	Optional<Object> findById(Long id);
 }
