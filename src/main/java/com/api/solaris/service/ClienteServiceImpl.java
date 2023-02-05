@@ -61,19 +61,6 @@ public class ClienteServiceImpl implements ClienteService {
 			throw new ClienteAlreadyCreatedException();
 		}
 
-//        this.nome = nome;
-//        this.tipo = tipo;
-//        this.cpfCnpj = cpfCnpj;
-//        this.cep = cep;
-//        this.endereco = endereco;
-//        this.numero = numero;
-//        this.cidade = cidade;
-//        this.estado = estado;
-//        this.email = email;
-//        this.complemento = complemento;
-//        this.senha = senha;
-//        this.celular = celular;
-
 		Cliente cliente = new Cliente(clienteDTO.getNome(), clienteDTO.getTipo(),clienteDTO.getCpfCnpj(), clienteDTO.getCep(),
                 clienteDTO.getEndereco(), clienteDTO.getNumero(), clienteDTO.getCidade(), clienteDTO.getEstado(), clienteDTO.getEmail(),
                 clienteDTO.getComplemento(), clienteDTO.getSenha(), clienteDTO.getCelular());
@@ -88,7 +75,29 @@ public class ClienteServiceImpl implements ClienteService {
 
 		Cliente cliente = getClienteId(id);
 
-//		cliente.setIdade(clienteDTO.getIdade());
+//        this.tipo = tipo;
+//        this.cpfCnpj = cpfCnpj;
+//        this.cep = cep;
+//        this.endereco = endereco;
+//        this.numero = numero;
+//        this.cidade = cidade;
+//        this.estado = estado;
+//        this.email = email;
+//        this.complemento = complemento;
+//        this.senha = senha;
+//        this.celular = celular;
+
+		cliente.setTipo(clienteDTO.getTipo());
+		cliente.setCpfCnpj(clienteDTO.getCpfCnpj());
+		cliente.setCep(clienteDTO.getCep());
+		cliente.setEndereco(clienteDTO.getEndereco());
+		cliente.setNumero(clienteDTO.getNumero());
+		cliente.setCidade(clienteDTO.getCidade());
+		cliente.setEstado(clienteDTO.getEstado());
+		cliente.setEmail(clienteDTO.getEmail());
+		cliente.setSenha(cliente.getSenha());
+		cliente.setCelular(cliente.getCelular());
+
 
 		salvarClienteCadastrado(cliente);
 
