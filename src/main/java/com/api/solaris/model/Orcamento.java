@@ -30,11 +30,12 @@ public class Orcamento {
     private double economiaAnual;
     private double potenciaInversor;
     private int qtdModulos;
-
     private double custo;
     private LocalDate dataSolicitacao;
+    private String nomeCliente;
+    private boolean pedidoGerado;
 
-    public Orcamento(String tipoMedia, int taxaDeRetorno, double mediaConsumo, String tipoFase, double economiaMensal, double economiaAnual, double potenciaInversor, int qtdModulos, double custo, LocalDate dataSolicitacao) {
+    public Orcamento(String tipoMedia, int taxaDeRetorno, double mediaConsumo, String tipoFase, double economiaMensal, double economiaAnual, double potenciaInversor, int qtdModulos, double custo, LocalDate dataSolicitacao, String nomeCliente, boolean pedidoGerado) {
         this.tipoMedia = tipoMedia;
         this.mediaConsumo = mediaConsumo;
         this.tipoFase = tipoFase;
@@ -45,5 +46,7 @@ public class Orcamento {
         this.custo = custo;
         this.taxaDeRetorno = taxaDeRetorno;
         this.dataSolicitacao = dataSolicitacao;
+        this.nomeCliente = nomeCliente;
+        this.pedidoGerado = pedidoGerado;
     }
 }

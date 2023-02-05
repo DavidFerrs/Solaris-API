@@ -10,6 +10,8 @@ public class CalculoOrcamentoDTO {
     private double potenciaInversor;
     private int qtdModulos;
     private int taxaDeRetorno;
+    private String nomeCliente;
+    private boolean pedidoGerado;
 
 //    public CalculoOrcamentoDTO(long id, double economiaMensal, double economiaAnual, double potenciaInversor, int qtdModulos) {
 //        this.id = id;

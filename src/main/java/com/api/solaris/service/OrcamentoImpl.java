@@ -79,8 +79,6 @@ public class OrcamentoImpl implements OrcamentoService{
 
     @Override
     public CalculoOrcamentoDTO calculaOrcamento(OrcamentoDTO orcamentoDTO){
-        DecimalFormat fmt = new DecimalFormat("#,###.00");
-        fmt.format(1234.36);
         double HORAS_DIARIAS = 4.93;
         double POTENCIA_MODULO = 340;
         double preçoKWHparaiba = 0.53644;
@@ -99,7 +97,7 @@ public class OrcamentoImpl implements OrcamentoService{
         int taxaRetorno = (int)Math.floor(Math.random() * (84 - 23 + 1) + 23);
 
         Orcamento orcamento = new Orcamento(orcamentoDTO.getTipoMedia(), taxaRetorno, orcamentoDTO.getMediaConsumo(), orcamentoDTO.getTipoFase(),
-                ecoMes, ecoAno, (potInversor/ 1000), qtdModulos, custo, orcamentoDTO.getDataSolicitacao());
+                ecoMes, ecoAno, (potInversor/ 1000), qtdModulos, custo, orcamentoDTO.getDataSolicitacao(), orcamentoDTO.getNomeCliente(), orcamentoDTO.isPedidoGerado());
 
         this.salvarOrcamento(orcamento);
 

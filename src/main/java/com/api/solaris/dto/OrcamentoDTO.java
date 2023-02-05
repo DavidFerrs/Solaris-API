@@ -17,4 +17,6 @@ public class OrcamentoDTO {
     private double custo;
     private int taxaDeRetorno;
     private LocalDate dataSolicitacao;
+    private String nomeCliente;
+    private boolean pedidoGerado;
 }
