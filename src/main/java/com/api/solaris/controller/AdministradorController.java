@@ -33,9 +33,6 @@ public class AdministradorController {
     @GetMapping(value = "/administradores")
     public ResponseEntity<?> listarAdministradores() {
         List<AdministradorDTO> administradores = administradorService.listarAdministradores();
-        if (administradores.isEmpty()) {
-            return ErroAdministrador.erroSemAdministradoresCadastrados();
-        }
         return new ResponseEntity<List<AdministradorDTO>>(administradores, HttpStatus.OK);
     }
 

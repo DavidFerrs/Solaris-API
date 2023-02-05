@@ -32,9 +32,6 @@ public class ModuloController {
     @GetMapping(value = "/modulos")
     public ResponseEntity<?> listarModulos() {
         List<ModuloDTO> modulos = moduloService.listarModulos();
-        if (modulos.isEmpty()) {
-            return ErroAdministrador.erroSemAdministradoresCadastrados();
-        }
         return new ResponseEntity<List<ModuloDTO>>(modulos, HttpStatus.OK);
     }
 

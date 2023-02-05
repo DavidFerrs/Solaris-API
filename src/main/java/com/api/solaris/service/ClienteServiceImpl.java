@@ -22,30 +22,30 @@ public class ClienteServiceImpl implements ClienteService {
 
 	@Autowired
 	public ModelMapper modelMapper;
-	
+
 	public ClienteDTO getClienteById(UUID id) throws ClienteNotFoundException {
 		Cliente cliente = getClienteId(id);
 		return modelMapper.map(cliente, ClienteDTO.class);
 	}
-	
+
 	private Cliente getClienteId(UUID id) throws ClienteNotFoundException {
 		return clienteRepository.findById(id)
 				.orElseThrow(() -> new ClienteNotFoundException());
 	}
-	
+
 	public ClienteDTO getClienteByCpf(Long cpf) throws ClienteNotFoundException {
-		Cliente cliente = clienteRepository.findByCpf(cpf)
+		Cliente cliente = clienteRepository.findByCpfCnpj(cpf)
 				.orElseThrow(() -> new ClienteNotFoundException());
 		return modelMapper.map(cliente, ClienteDTO.class);
 	}
-		
+
 	public void removerClienteCadastrado(UUID id) throws ClienteNotFoundException {
 		Cliente cliente = getClienteId(id);
 		clienteRepository.delete(cliente);
 	}
 
 	private void salvarClienteCadastrado(Cliente cliente) {
-		clienteRepository.save(cliente);		
+		clienteRepository.save(cliente);
 	}
 
 	public List<ClienteDTO> listarClientes() {
@@ -57,31 +57,45 @@ public class ClienteServiceImpl implements ClienteService {
 	}
 
 	public ClienteDTO criaCliente(ClienteDTO clienteDTO) throws ClienteAlreadyCreatedException {
-		
-		if(isClienteCadastrado(clienteDTO.getCpf())) {
+
+		if(isClienteCadastrado(clienteDTO.getCpfCnpj())) {
 			throw new ClienteAlreadyCreatedException();
 		}
-			
-		Cliente cliente = new Cliente(clienteDTO.getCpf(), clienteDTO.getNome(), 
-				clienteDTO.getIdade());
-		
+
+//        this.nome = nome;
+//        this.tipo = tipo;
+//        this.cpfCnpj = cpfCnpj;
+//        this.cep = cep;
+//        this.endereco = endereco;
+//        this.numero = numero;
+//        this.cidade = cidade;
+//        this.estado = estado;
+//        this.email = email;
+//        this.complemento = complemento;
+//        this.senha = senha;
+//        this.celular = celular;
+
+		Cliente cliente = new Cliente(clienteDTO.getNome(), clienteDTO.getTipo(),clienteDTO.getCpfCnpj(), clienteDTO.getCep(),
+                clienteDTO.getEndereco(), clienteDTO.getNumero(), clienteDTO.getCidade(), clienteDTO.getEstado(), clienteDTO.getEmail(),
+                clienteDTO.getComplemento(), clienteDTO.getSenha(), clienteDTO.getCelular());
+
 		salvarClienteCadastrado(cliente);
 
-		
+
 		return modelMapper.map(cliente, ClienteDTO.class);
 	}
 
 	public ClienteDTO atualizaCliente(UUID id, ClienteDTO clienteDTO) throws ClienteNotFoundException {
-		
+
 		Cliente cliente = getClienteId(id);
-		
-		cliente.setIdade(clienteDTO.getIdade());
+
+//		cliente.setIdade(clienteDTO.getIdade());
 
 		salvarClienteCadastrado(cliente);
-		
+
 		return modelMapper.map(cliente, ClienteDTO.class);
 	}
-	
+
 	private boolean isClienteCadastrado(Long cpf) {
 		try {
 			getClienteByCpf(cpf);

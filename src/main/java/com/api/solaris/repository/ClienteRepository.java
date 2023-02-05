@@ -10,7 +10,7 @@ import java.util.UUID;
 @Repository
 public interface ClienteRepository extends JpaRepository<Cliente, UUID>{
 
-	Optional<Cliente> findByCpf(long CPF);
+	Optional<Cliente> findByCpfCnpj(long cpfCnpj);
 
 	Optional<Cliente> findByNome(String nome);
 }

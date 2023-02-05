@@ -7,10 +7,14 @@ import java.time.LocalDate;
 @Data
 public class OrcamentoDTO {
     private long id;
-    private double custo;
-    private double potenciaInversor;
+    private String tipoMedia;
+    private double mediaConsumo;
     private String tipoFase;
+    private double economiaMensal;
+    private double economiaAnual;
+    private double potenciaInversor;
     private int qtdModulos;
-    private int consumoCliente;
+    private double custo;
+    private int taxaDeRetorno;
     private LocalDate dataSolicitacao;
 }

@@ -12,43 +12,148 @@ public class Cliente {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    private Long cpf;
-
     @NotNull
     @Column(unique=true)
     private String nome;
 
-    private int idade;
+    private String tipo;
+
+    private Long cpfCnpj;
+
+    private Long cep;
+
+    private String endereco;
+
+    private String numero;
+
+    private String cidade;
+
+    private String estado;
+
+    private String email;
+
+    private String complemento;
+
+    private String senha;
+
+    private String celular;
+
 
 
     private Cliente() {}
 
-    public Cliente(Long cpf, String nome, int idade) {
-        this.cpf = cpf;
+    public Cliente(String nome, String tipo, Long cpfCnpj, Long cep, String endereco, String numero, String cidade, String estado, String email, String complemento, String senha, String celular) {
         this.nome = nome;
-        this.idade = idade;
+        this.tipo = tipo;
+        this.cpfCnpj = cpfCnpj;
+        this.cep = cep;
+        this.endereco = endereco;
+        this.numero = numero;
+        this.cidade = cidade;
+        this.estado = estado;
+        this.email = email;
+        this.complemento = complemento;
+        this.senha = senha;
+        this.celular = celular;
     }
 
     public UUID getId() {
         return id;
     }
 
-    public Long getCpf() {
-        return cpf;
-    }
-
     public String getNome() {
         return nome;
     }
 
-    public Integer getIdade() {
-        return idade;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public void setIdade(Integer idade) {
-        this.idade = idade;
+    public String getTipo() {
+        return tipo;
     }
 
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
 
+    public Long getCpfCnpj() {
+        return cpfCnpj;
+    }
 
+    public void setCpfCnpj(Long cpfCnpj) {
+        this.cpfCnpj = cpfCnpj;
+    }
+
+    public Long getCep() {
+        return cep;
+    }
+
+    public void setCep(Long cep) {
+        this.cep = cep;
+    }
+
+    public String getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
+    }
+
+    public String getNumero() {
+        return numero;
+    }
+
+    public void setNumero(String numero) {
+        this.numero = numero;
+    }
+
+    public String getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getComplemento() {
+        return complemento;
+    }
+
+    public void setComplemento(String complemento) {
+        this.complemento = complemento;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    public String getCelular() {
+        return celular;
+    }
+
+    public void setCelular(String celular) {
+        this.celular = celular;
+    }
 }

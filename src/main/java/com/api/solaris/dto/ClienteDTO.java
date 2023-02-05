@@ -1,31 +1,41 @@
 package com.api.solaris.dto;
 
-import java.util.UUID;
+import lombok.Data;
 
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+import java.util.UUID;
+@Data
 public class ClienteDTO {
 
     private UUID id;
 
-    private Long cpf;
-
     private String nome;
 
-    private Integer idade;
+    private String tipo;
 
-    public UUID getId() {
-        return id;
-    }
+    private Long cpfCnpj;
 
-    public Long getCpf() {
-        return cpf;
-    }
+    private Long cep;
 
-    public String getNome() {
-        return nome;
-    }
+    private String endereco;
 
-    public Integer getIdade() {
-        return idade;
-    }
+    private String numero;
+
+    private String cidade;
+
+    private String estado;
+
+    private String email;
+
+    private String complemento;
+
+    private String senha;
+
+    private String celular;
+
 
 }

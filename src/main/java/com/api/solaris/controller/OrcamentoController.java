@@ -1,4 +1,5 @@
 package com.api.solaris.controller;
+import com.api.solaris.dto.CalculoOrcamentoDTO;
 import com.api.solaris.dto.OrcamentoDTO;
 import com.api.solaris.exception.EntityAlreadyExistsException;
 import com.api.solaris.exception.EntityNotFoundException;
@@ -19,22 +20,29 @@ public class OrcamentoController {
     @Autowired
     OrcamentoService orcamentoService;
 
+//    @PostMapping(value = "/orcamento/")
+//    public ResponseEntity<?> criarOrcamento(@RequestBody OrcamentoDTO orcamentoDTO) {
+//        try {
+//            OrcamentoDTO orcamento = orcamentoService.addOrcamento(orcamentoDTO);
+//            return new ResponseEntity<OrcamentoDTO>(orcamento, HttpStatus.CREATED);
+//        } catch (EntityAlreadyExistsException e) {
+//            return new ResponseEntity<String>("orcamento ja cadastrado", HttpStatus.CONFLICT);
+//        }
+//    }
+
     @PostMapping(value = "/orcamento/")
-    public ResponseEntity<?> criarOrcamento(@RequestBody OrcamentoDTO orcamentoDTO) {
+    public ResponseEntity<?> calculaOrcamento(@RequestBody OrcamentoDTO orcamentoDTO) {
         try {
-            OrcamentoDTO orcamento = orcamentoService.addOrcamento(orcamentoDTO);
-            return new ResponseEntity<OrcamentoDTO>(orcamento, HttpStatus.CREATED);
-        } catch (EntityAlreadyExistsException e) {
-            return new ResponseEntity<String>("orcamento ja cadastrado", HttpStatus.CONFLICT);
+            CalculoOrcamentoDTO orcamento = orcamentoService.calculaOrcamento(orcamentoDTO);
+            return new ResponseEntity<CalculoOrcamentoDTO>(orcamento, HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<String>("Internal server error", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
     @GetMapping(value = "/orcamentos")
     public ResponseEntity<?> listarOrcamentos() {
         List<OrcamentoDTO> orcamentos = orcamentoService.listarOrcamentos();
-        if (orcamentos.isEmpty()) {
-            return ErroAdministrador.erroSemAdministradoresCadastrados();
-        }
         return new ResponseEntity<List<OrcamentoDTO>>(orcamentos, HttpStatus.OK);
     }
 

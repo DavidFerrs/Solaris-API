@@ -20,19 +20,30 @@ public class Orcamento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private LocalDate dataSolicitacao;
-    private double custo;
-    private double potenciaInversor;
+
+    private String tipoMedia;
+    private double mediaConsumo;
     private String tipoFase;
+
+    private int taxaDeRetorno;
+    private double economiaMensal;
+    private double economiaAnual;
+    private double potenciaInversor;
     private int qtdModulos;
-    private int consumoCliente;
 
-    public Orcamento(double potenciaInversor, String tipoFase, int consumoCliente) {
-        this.potenciaInversor = potenciaInversor;
+    private double custo;
+    private LocalDate dataSolicitacao;
+
+    public Orcamento(String tipoMedia, int taxaDeRetorno, double mediaConsumo, String tipoFase, double economiaMensal, double economiaAnual, double potenciaInversor, int qtdModulos, double custo, LocalDate dataSolicitacao) {
+        this.tipoMedia = tipoMedia;
+        this.mediaConsumo = mediaConsumo;
         this.tipoFase = tipoFase;
-        this.consumoCliente = consumoCliente;
-        this.dataSolicitacao = LocalDate.now();
-        this.qtdModulos = consumoCliente / 31;
+        this.economiaMensal = economiaMensal;
+        this.economiaAnual = economiaAnual;
+        this.potenciaInversor = potenciaInversor;
+        this.qtdModulos = qtdModulos;
+        this.custo = custo;
+        this.taxaDeRetorno = taxaDeRetorno;
+        this.dataSolicitacao = dataSolicitacao;
     }
-
 }
