@@ -77,7 +77,7 @@ public class OrcamentoController {
     }
 
 
-    @PutMapping(value = "/orcamento/{id}")
+    @PutMapping(value = "/orcamento/pedidogerado/{id}")
     public ResponseEntity<?> atualizarPedidoGerado(@PathVariable("id") long id, @RequestBody OrcamentoDTO orcamentoDTO) throws EntityNotFoundException {
 
         OrcamentoDTO orcamento = orcamentoService.atualizarPedidoGerado(id, orcamentoDTO);
@@ -116,14 +116,14 @@ public class OrcamentoController {
         return new ResponseEntity<List<PedidoDTO>>(pedidos, HttpStatus.OK);
     }
 
-    @PutMapping(value = "/orcamento/{id}")
+    @PutMapping(value = "/pedido/confirmar/{id}")
     public ResponseEntity<?> atualizarStatusPedidoConfirmar(@PathVariable("id") long id) throws EntityNotFoundException {
 
         PedidoDTO pedido = orcamentoService.atualizarStatusPedidoConfirmar(id);
         return new ResponseEntity<PedidoDTO>(pedido, HttpStatus.OK);
     }
 
-    @PutMapping(value = "/orcamento/{id}")
+    @PutMapping(value = "/pedido/cancelar/{id}")
     public ResponseEntity<?> atualizarStatusPedidoCancelar(@PathVariable("id") long id) throws EntityNotFoundException {
 
         PedidoDTO pedido = orcamentoService.atualizarStatusPedidoCancelar(id);
