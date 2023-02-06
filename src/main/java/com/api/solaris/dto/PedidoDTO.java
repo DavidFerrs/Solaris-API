@@ -25,6 +25,5 @@ public class PedidoDTO {
     private double economiaAnual;
     private double potenciaInversor;
     private int qtdModulos;
-    private boolean pedidoGerado;
 
 }

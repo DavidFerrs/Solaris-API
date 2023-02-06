@@ -35,7 +35,7 @@ public class Pedido {
     private int qtdModulos;
     private boolean pedidoGerado;
 
-    public Pedido(String nomeCliente, LocalDate dataSolicitacao, double custoTotal, String status, String tipoMedia, double mediaConsumo, String tipoFase, int taxaDeRetorno, double economiaMensal, double economiaAnual, double potenciaInversor, int qtdModulos, boolean pedidoGerado) {
+    public Pedido(String nomeCliente, LocalDate dataSolicitacao, double custoTotal, String status, String tipoMedia, double mediaConsumo, String tipoFase, int taxaDeRetorno, double economiaMensal, double economiaAnual, double potenciaInversor, int qtdModulos) {
         this.nomeCliente = nomeCliente;
         this.dataSolicitacao = dataSolicitacao;
         this.custoTotal = custoTotal;
@@ -48,7 +48,6 @@ public class Pedido {
         this.economiaAnual = economiaAnual;
         this.potenciaInversor = potenciaInversor;
         this.qtdModulos = qtdModulos;
-        this.pedidoGerado = pedidoGerado;
     }
 
     public long getId() {

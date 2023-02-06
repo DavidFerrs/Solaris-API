@@ -153,7 +153,7 @@ public class OrcamentoImpl implements OrcamentoService{
         Pedido pedido = new Pedido(pedidoDTO.getNomeCliente(), pedidoDTO.getDataSolicitacao(),
                 pedidoDTO.getCustoTotal(), pedidoDTO.getStatus(),pedidoDTO.getTipoMedia(),pedidoDTO.getMediaConsumo(),
                 pedidoDTO.getTipoFase(), pedidoDTO.getTaxaDeRetorno(), pedidoDTO.getEconomiaMensal(), pedidoDTO.getEconomiaAnual(),
-                pedidoDTO.getPotenciaInversor(), pedidoDTO.getQtdModulos(), pedidoDTO.isPedidoGerado());
+                pedidoDTO.getPotenciaInversor(), pedidoDTO.getQtdModulos());
         salvarPedido(pedido);
         return modelMapper.map(pedido, PedidoDTO.class);
     }
