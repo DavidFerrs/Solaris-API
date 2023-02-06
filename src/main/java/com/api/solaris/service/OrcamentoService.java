@@ -27,6 +27,10 @@ public interface OrcamentoService {
 
     public OrcamentoDTO atualizarPedidoGerado(long id, OrcamentoDTO orcamentoDTO) throws EntityNotFoundException;
 
+    public PedidoDTO atualizarStatusPedidoConfirmar(long id) throws EntityNotFoundException;
+
+    public PedidoDTO atualizarStatusPedidoCancelar(long id) throws EntityNotFoundException;
+
     public Orcamento getOrcamento(Long id) throws EntityNotFoundException;
 
     public PedidoDTO criarPedido(PedidoDTO pedidoDTO) throws EntityAlreadyExistsException, EntityNotFoundException;

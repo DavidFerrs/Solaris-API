@@ -168,6 +168,29 @@ public class OrcamentoImpl implements OrcamentoService{
         return modelMapper.map(pedido, PedidoDTO.class);
     }
 
+    @Override
+    public PedidoDTO atualizarStatusPedidoConfirmar(long id) throws EntityNotFoundException{
+
+        Pedido pedido = getPedido(id);
+        pedido.setStatus("Confirmado");
+
+        salvarPedido(pedido);
+
+        return modelMapper.map(pedido, PedidoDTO.class);
+    }
+
+    @Override
+    public PedidoDTO atualizarStatusPedidoCancelar(long id) throws EntityNotFoundException{
+
+        Pedido pedido = getPedido(id);
+        pedido.setStatus("Cancelado");
+
+        salvarPedido(pedido);
+
+        return modelMapper.map(pedido, PedidoDTO.class);
+    }
+
+
 
     @Override
     public List<PedidoDTO> listarPedidos() {
@@ -181,8 +204,12 @@ public class OrcamentoImpl implements OrcamentoService{
     @Override
     public PedidoDTO getPedidoDTO(long id) throws EntityNotFoundException {
 
-        Pedido pedido = pedidoRepository.findById(id).orElseThrow(() -> new EntityNotFoundException());
+        Pedido pedido = getPedido(id);
         return modelMapper.map(pedido, PedidoDTO.class);
+    }
+
+    private Pedido getPedido(Long id) throws EntityNotFoundException {
+        return pedidoRepository.findById(id).orElseThrow(() -> new EntityNotFoundException());
     }
 
 
