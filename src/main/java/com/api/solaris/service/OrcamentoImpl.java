@@ -96,6 +96,8 @@ public class OrcamentoImpl implements OrcamentoService{
         orcamento.setNomeCliente(orcamentoDTO.getNomeCliente());
         orcamento.setPedidoGerado(orcamentoDTO.isPedidoGerado());
 
+        salvarOrcamento(orcamento);
+
         return modelMapper.map(orcamento, OrcamentoDTO.class);
     }
 
