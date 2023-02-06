@@ -78,9 +78,9 @@ public class OrcamentoController {
 
 
     @PutMapping(value = "/orcamento/pedidogerado/{id}")
-    public ResponseEntity<?> atualizarPedidoGerado(@PathVariable("id") long id, @RequestBody OrcamentoDTO orcamentoDTO) throws EntityNotFoundException {
+    public ResponseEntity<?> confirmarPedidoGerado(@PathVariable("id") long id, @RequestBody OrcamentoDTO orcamentoDTO) throws EntityNotFoundException {
 
-        OrcamentoDTO orcamento = orcamentoService.atualizarPedidoGerado(id, orcamentoDTO);
+        OrcamentoDTO orcamento = orcamentoService.confirmarPedidoGerado(id);
         return new ResponseEntity<OrcamentoDTO>(orcamento, HttpStatus.OK);
     }
 

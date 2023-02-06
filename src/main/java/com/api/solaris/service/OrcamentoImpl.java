@@ -101,10 +101,10 @@ public class OrcamentoImpl implements OrcamentoService{
     }
 
     @Override
-    public OrcamentoDTO atualizarPedidoGerado(long id, OrcamentoDTO orcamentoDTO) throws EntityNotFoundException{
+    public OrcamentoDTO confirmarPedidoGerado(long id) throws EntityNotFoundException{
 
         Orcamento orcamento = getOrcamento(id);
-        orcamento.setPedidoGerado(orcamentoDTO.isPedidoGerado());
+        orcamento.setPedidoGerado(true);
 
         salvarOrcamento(orcamento);
 
