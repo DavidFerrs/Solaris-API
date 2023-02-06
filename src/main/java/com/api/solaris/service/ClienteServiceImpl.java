@@ -97,6 +97,7 @@ public class ClienteServiceImpl implements ClienteService {
 		cliente.setEmail(clienteDTO.getEmail());
 		cliente.setSenha(cliente.getSenha());
 		cliente.setCelular(cliente.getCelular());
+		cliente.setNome(clienteDTO.getNome());
 
 
 		salvarClienteCadastrado(cliente);
