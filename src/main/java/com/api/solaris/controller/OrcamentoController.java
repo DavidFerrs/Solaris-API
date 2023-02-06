@@ -1,10 +1,10 @@
 package com.api.solaris.controller;
 import com.api.solaris.dto.CalculoOrcamentoDTO;
 import com.api.solaris.dto.OrcamentoDTO;
+import com.api.solaris.dto.PedidoDTO;
 import com.api.solaris.exception.EntityAlreadyExistsException;
 import com.api.solaris.exception.EntityNotFoundException;
 import com.api.solaris.service.OrcamentoService;
-import com.api.solaris.util.ErroAdministrador;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +19,7 @@ import java.util.List;
 public class OrcamentoController {
     @Autowired
     OrcamentoService orcamentoService;
+
 
 //    @PostMapping(value = "/orcamento/")
 //    public ResponseEntity<?> criarOrcamento(@RequestBody OrcamentoDTO orcamentoDTO) {
@@ -73,6 +74,38 @@ public class OrcamentoController {
 
         OrcamentoDTO orcamento = orcamentoService.atualizarOrcamento(id, orcamentoDTO);
         return new ResponseEntity<OrcamentoDTO>(orcamento, HttpStatus.OK);
+    }
+
+
+    // PEDIDOS API // _+_+_+_+_+_+_+_+_+=-=-=-=--=-=-=-=--==-=-=--==--==-=-
+
+    @PostMapping(value = "/pedido/")
+    public ResponseEntity<?> calculaOrcamento(@RequestBody PedidoDTO pedidoDTO) {
+        try {
+            PedidoDTO pedido = orcamentoService.criarPedido(pedidoDTO);
+            return new ResponseEntity<PedidoDTO>(pedido, HttpStatus.CREATED);
+        } catch (EntityNotFoundException e) {
+            return new ResponseEntity<String>("orcamento não encontrado", HttpStatus.CONFLICT);
+        } catch (EntityAlreadyExistsException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @GetMapping(value = "/pedido/{id}")
+    public ResponseEntity<?> consultarPedido(@PathVariable("id") long id) throws EntityNotFoundException{
+
+        try {
+            PedidoDTO pedido = orcamentoService.getPedidoDTO(id);
+            return new ResponseEntity<PedidoDTO>(pedido, HttpStatus.OK);
+        } catch (EntityNotFoundException e) {
+            return new ResponseEntity<String>("pedido não encontrado", HttpStatus.CONFLICT);
+        }
+    }
+
+    @GetMapping(value = "/pedidos")
+    public ResponseEntity<?> listarPedidos() {
+        List<PedidoDTO> pedidos = orcamentoService.listarPedidos();
+        return new ResponseEntity<List<PedidoDTO>>(pedidos, HttpStatus.OK);
     }
 
 

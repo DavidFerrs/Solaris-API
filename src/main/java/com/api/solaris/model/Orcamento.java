@@ -20,7 +20,6 @@ public class Orcamento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-
     private String tipoMedia;
     private double mediaConsumo;
     private String tipoFase;

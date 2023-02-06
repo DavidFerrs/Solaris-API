@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Data
 @NoArgsConstructor
@@ -15,26 +16,45 @@ public class Pedido {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @OneToOne(cascade = {CascadeType.ALL})
-    private Orcamento orcamento;
+//    @OneToOne(cascade = {CascadeType.ALL})
+//    private Orcamento orcamento;
+
+    private String nomeCliente;
+
+    private LocalDate dataSolicitacao;
+
+    private double custoTotal;
 
     private String status;
 
-    public Pedido(Orcamento orcamento, String status) {
-        this.orcamento = orcamento;
+    private Long orcamentoId;
+
+    public Pedido(String nomeCliente, LocalDate dataSolicitacao, double custoTotal, String status, Long orcamentoId) {
+        this.nomeCliente = nomeCliente;
+        this.dataSolicitacao = dataSolicitacao;
+        this.custoTotal = custoTotal;
         this.status = status;
+        this.orcamentoId = orcamentoId;
     }
 
     public long getId() {
         return id;
     }
 
-    public Orcamento getOrcamento() {
-        return orcamento;
+    public String getNomeCliente() {
+        return nomeCliente;
     }
 
-    public void setOrcamento(Orcamento orcamento) {
-        this.orcamento = orcamento;
+    public LocalDate getDataSolicitacao() {
+        return dataSolicitacao;
+    }
+
+    public double getCustoTotal() {
+        return custoTotal;
+    }
+
+    public Long getOrcamentoId() {
+        return orcamentoId;
     }
 
     public String getStatus() {

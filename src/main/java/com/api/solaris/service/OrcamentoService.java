@@ -1,8 +1,10 @@
 package com.api.solaris.service;
 import com.api.solaris.dto.OrcamentoDTO;
+import com.api.solaris.dto.PedidoDTO;
 import com.api.solaris.exception.EntityAlreadyExistsException;
 import com.api.solaris.exception.EntityNotFoundException;
 import com.api.solaris.model.Orcamento;
+import com.api.solaris.model.Pedido;
 
 import java.util.List;
 
@@ -15,10 +17,15 @@ public interface OrcamentoService {
     public OrcamentoDTO addOrcamento(OrcamentoDTO orcamentoDTO);
 
     public List<OrcamentoDTO> listarOrcamentos();
+    public List<PedidoDTO> listarPedidos();
 
     public OrcamentoDTO getOrcamentoDTO(long id) throws EntityNotFoundException;
+
+    public PedidoDTO getPedidoDTO(long id) throws EntityNotFoundException;
 
     public OrcamentoDTO atualizarOrcamento(long id, OrcamentoDTO orcamentoDTO) throws EntityNotFoundException;
 
     public Orcamento getOrcamento(Long id) throws EntityNotFoundException;
+
+    public PedidoDTO criarPedido(PedidoDTO pedidoDTO) throws EntityAlreadyExistsException, EntityNotFoundException;
 }

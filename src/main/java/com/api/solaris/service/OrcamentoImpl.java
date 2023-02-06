@@ -1,8 +1,13 @@
 package com.api.solaris.service;
+import com.api.solaris.dto.ClienteDTO;
 import com.api.solaris.dto.OrcamentoDTO;
+import com.api.solaris.dto.PedidoDTO;
+import com.api.solaris.exception.EntityAlreadyExistsException;
 import com.api.solaris.exception.EntityNotFoundException;
 import com.api.solaris.model.Orcamento;
+import com.api.solaris.model.Pedido;
 import com.api.solaris.repository.OrcamentoRepository;
+import com.api.solaris.repository.PedidoRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +20,9 @@ import java.util.stream.Collectors;
 public class OrcamentoImpl implements OrcamentoService{
     @Autowired
     private OrcamentoRepository orcamentoRepository;
+
+    @Autowired
+    private PedidoRepository pedidoRepository;
 
     @Autowired
     public ModelMapper modelMapper;
@@ -118,6 +126,38 @@ public class OrcamentoImpl implements OrcamentoService{
 
         return modelMapper.map(orcamento, OrcamentoDTO.class);
     }
+
+    private void salvarPedido(Pedido pedido) {
+        pedidoRepository.save(pedido);
+    }
+
+    @Override
+    public PedidoDTO criarPedido(PedidoDTO pedidoDTO) throws EntityAlreadyExistsException, EntityNotFoundException {
+
+
+        Pedido pedido = new Pedido(pedidoDTO.getNomeCliente(), pedidoDTO.getDataSolicitacao(), pedidoDTO.getCustoTotal(), pedidoDTO.getStatus(), pedidoDTO.getOrcamentoId());
+        salvarPedido(pedido);
+        return modelMapper.map(pedido, PedidoDTO.class);
+    }
+
+
+    @Override
+    public List<PedidoDTO> listarPedidos() {
+        List<PedidoDTO> clientes = pedidoRepository.findAll()
+                .stream()
+                .map(cliente -> modelMapper.map(cliente, PedidoDTO.class))
+                .collect(Collectors.toList());
+        return clientes;
+    }
+
+    @Override
+    public PedidoDTO getPedidoDTO(long id) throws EntityNotFoundException {
+
+        Pedido pedido = pedidoRepository.findById(id).orElseThrow(() -> new EntityNotFoundException());
+        return modelMapper.map(pedido, PedidoDTO.class);
+    }
+
+
 
 
 
