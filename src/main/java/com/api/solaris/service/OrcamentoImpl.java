@@ -94,6 +94,16 @@ public class OrcamentoImpl implements OrcamentoService{
         orcamento.setCusto(orcamentoDTO.getCusto());
         orcamento.setDataSolicitacao(orcamento.getDataSolicitacao());
         orcamento.setNomeCliente(orcamentoDTO.getNomeCliente());
+
+        salvarOrcamento(orcamento);
+
+        return modelMapper.map(orcamento, OrcamentoDTO.class);
+    }
+
+    @Override
+    public OrcamentoDTO atualizarPedidoGerado(long id, OrcamentoDTO orcamentoDTO) throws EntityNotFoundException{
+
+        Orcamento orcamento = getOrcamento(id);
         orcamento.setPedidoGerado(orcamentoDTO.isPedidoGerado());
 
         salvarOrcamento(orcamento);
