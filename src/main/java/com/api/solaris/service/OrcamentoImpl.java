@@ -1,5 +1,4 @@
 package com.api.solaris.service;
-import com.api.solaris.dto.CalculoOrcamentoDTO;
 import com.api.solaris.dto.OrcamentoDTO;
 import com.api.solaris.exception.EntityNotFoundException;
 import com.api.solaris.model.Orcamento;
@@ -8,7 +7,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.text.DecimalFormat;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,7 +25,8 @@ public class OrcamentoImpl implements OrcamentoService{
         orcamentoRepository.delete(orcamento);
     }
 
-    private Orcamento getOrcamento(Long id) throws EntityNotFoundException {
+    @Override
+    public Orcamento getOrcamento(Long id) throws EntityNotFoundException {
         return orcamentoRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException());
     }
@@ -42,15 +42,19 @@ public class OrcamentoImpl implements OrcamentoService{
     private void salvarOrcamento(Orcamento orcamento) {
         orcamentoRepository.save(orcamento);
     }
-//    public OrcamentoDTO addOrcamento(OrcamentoDTO orcamentoDTO) throws EntityAlreadyExistsException {
+
+    @Override
+    public OrcamentoDTO addOrcamento(OrcamentoDTO orcamentoDTO){
 //        if(isOrcamentoCadastrado(orcamentoDTO.getId())) {
 //            throw new EntityAlreadyExistsException();
 //        }
-//
-//        Orcamento orcamento = new Orcamento(orcamentoDTO.getPotenciaInversor(), orcamentoDTO.getTipoFase(), orcamentoDTO.getConsumoCliente());
-//        salvarOrcamento(orcamento);
-//        return modelMapper.map(orcamento, OrcamentoDTO.class);
-//    }
+
+        Orcamento orcamento = new Orcamento(orcamentoDTO.getTipoMedia(), orcamentoDTO.getTaxaDeRetorno(), orcamentoDTO.getMediaConsumo(), orcamentoDTO.getTipoFase(),
+                orcamentoDTO.getEconomiaMensal(), orcamentoDTO.getEconomiaAnual(), orcamentoDTO.getPotenciaInversor(), orcamentoDTO.getQtdModulos(), orcamentoDTO.getCusto(), orcamentoDTO.getDataSolicitacao(), orcamentoDTO.getNomeCliente(), orcamentoDTO.isPedidoGerado());
+
+        this.salvarOrcamento(orcamento);
+        return modelMapper.map(orcamento, OrcamentoDTO.class);
+    }
 
     @Override
     public List<OrcamentoDTO> listarOrcamentos() {
@@ -69,16 +73,27 @@ public class OrcamentoImpl implements OrcamentoService{
 
     @Override
     public OrcamentoDTO atualizarOrcamento(long id, OrcamentoDTO orcamentoDTO) throws EntityNotFoundException{
+
         Orcamento orcamento = getOrcamento(id);
         orcamento.setQtdModulos(orcamentoDTO.getQtdModulos());
         orcamento.setMediaConsumo(orcamentoDTO.getMediaConsumo());
         orcamento.setPotenciaInversor(orcamentoDTO.getPotenciaInversor());
+        orcamento.setTipoMedia(orcamentoDTO.getTipoMedia());
+        orcamento.setTipoFase(orcamentoDTO.getTipoFase());
+        orcamento.setTaxaDeRetorno(orcamento.getTaxaDeRetorno());
+        orcamento.setEconomiaMensal(orcamentoDTO.getEconomiaMensal());
+        orcamento.setEconomiaAnual(orcamentoDTO.getEconomiaAnual());
+        orcamento.setCusto(orcamentoDTO.getCusto());
+        orcamento.setDataSolicitacao(orcamento.getDataSolicitacao());
+        orcamento.setNomeCliente(orcamentoDTO.getNomeCliente());
+        orcamento.setPedidoGerado(orcamentoDTO.isPedidoGerado());
+
         return modelMapper.map(orcamento, OrcamentoDTO.class);
     }
 
 
     @Override
-    public CalculoOrcamentoDTO calculaOrcamento(OrcamentoDTO orcamentoDTO){
+    public OrcamentoDTO calculaOrcamento(OrcamentoDTO orcamentoDTO){
         double HORAS_DIARIAS = 4.93;
         double POTENCIA_MODULO = 340;
         double preçoKWHparaiba = 0.53644;
@@ -99,9 +114,9 @@ public class OrcamentoImpl implements OrcamentoService{
         Orcamento orcamento = new Orcamento(orcamentoDTO.getTipoMedia(), taxaRetorno, orcamentoDTO.getMediaConsumo(), orcamentoDTO.getTipoFase(),
                 ecoMes, ecoAno, (potInversor/ 1000), qtdModulos, custo, orcamentoDTO.getDataSolicitacao(), orcamentoDTO.getNomeCliente(), orcamentoDTO.isPedidoGerado());
 
-        this.salvarOrcamento(orcamento);
+        salvarOrcamento(orcamento);
 
-        return modelMapper.map(orcamento, CalculoOrcamentoDTO.class);
+        return modelMapper.map(orcamento, OrcamentoDTO.class);
     }
 
 

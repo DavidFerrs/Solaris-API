@@ -33,8 +33,8 @@ public class OrcamentoController {
     @PostMapping(value = "/orcamento/")
     public ResponseEntity<?> calculaOrcamento(@RequestBody OrcamentoDTO orcamentoDTO) {
         try {
-            CalculoOrcamentoDTO orcamento = orcamentoService.calculaOrcamento(orcamentoDTO);
-            return new ResponseEntity<CalculoOrcamentoDTO>(orcamento, HttpStatus.CREATED);
+            OrcamentoDTO orcamento = orcamentoService.calculaOrcamento(orcamentoDTO);
+            return new ResponseEntity<OrcamentoDTO>(orcamento, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<String>("Internal server error", HttpStatus.INTERNAL_SERVER_ERROR);
         }
