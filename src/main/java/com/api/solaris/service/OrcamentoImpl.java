@@ -136,8 +136,24 @@ public class OrcamentoImpl implements OrcamentoService{
     @Override
     public PedidoDTO criarPedido(PedidoDTO pedidoDTO) throws EntityAlreadyExistsException, EntityNotFoundException {
 
+//        this.nomeCliente = nomeCliente;
+//        this.dataSolicitacao = dataSolicitacao;
+//        this.custoTotal = custoTotal;
+//        this.status = status;
+//        this.tipoMedia = tipoMedia;
+//        this.mediaConsumo = mediaConsumo;
+//        this.tipoFase = tipoFase;
+//        this.taxaDeRetorno = taxaDeRetorno;
+//        this.economiaMensal = economiaMensal;
+//        this.economiaAnual = economiaAnual;
+//        this.potenciaInversor = potenciaInversor;
+//        this.qtdModulos = qtdModulos;
+//        this.pedidoGerado = pedidoGerado;
 
-        Pedido pedido = new Pedido(pedidoDTO.getNomeCliente(), pedidoDTO.getDataSolicitacao(), pedidoDTO.getCustoTotal(), pedidoDTO.getStatus(), pedidoDTO.getOrcamentoId());
+        Pedido pedido = new Pedido(pedidoDTO.getNomeCliente(), pedidoDTO.getDataSolicitacao(),
+                pedidoDTO.getCustoTotal(), pedidoDTO.getStatus(),pedidoDTO.getTipoMedia(),pedidoDTO.getMediaConsumo(),
+                pedidoDTO.getTipoFase(), pedidoDTO.getTaxaDeRetorno(), pedidoDTO.getEconomiaMensal(), pedidoDTO.getEconomiaAnual(),
+                pedidoDTO.getPotenciaInversor(), pedidoDTO.getQtdModulos(), pedidoDTO.isPedidoGerado());
         salvarPedido(pedido);
         return modelMapper.map(pedido, PedidoDTO.class);
     }
